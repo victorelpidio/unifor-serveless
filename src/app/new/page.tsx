@@ -13,6 +13,21 @@ export default function NewPostPage() {
     createPost(title, content);
     router.push("/");
   }
+  
+  async function createPost(title: string, content: string) {
+    console.log("criando um post")
+    // const response = await fetch("/api/posts", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ title, content }),
+    // });
+
+    // if (!response.ok) {
+    //   throw new Error("Failed to create post");
+    // }
+  }
 
   return (
     <main className="p-6 max-w-xl mx-auto">
