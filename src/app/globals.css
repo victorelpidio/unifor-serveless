@@ -4,20 +4,59 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
+  --primary: rgb(49,91,101);
+  --secondary: rgb(140,183,184);
+  --tertiary: rgb(79,146,157);
+  
+  /* Primary color shades */
+  --primary-50: #f0f5f7;
+  --primary-100: #d9e3e8;
+  --primary-200: #c2d1d9;
+  --primary-300: #aabfca;
+  --primary-400: #93adbb;
+  --primary-500: #7b9bac;
+  --primary-600: #315b65;
+  --primary-700: #2a4e56;
+  --primary-800: #234147;
+  --primary-900: #1c3438;
+  --primary-950: #152729;
+  
+  /* Secondary color shades */
+  --secondary-50: #f5f9f9;
+  --secondary-100: #e6f0f0;
+  --secondary-200: #d7e7e7;
+  --secondary-300: #c8dede;
+  --secondary-400: #b9d5d5;
+  --secondary-500: #8cb7b8;
+  --secondary-600: #5f9a9b;
+  --secondary-700: #4d7c7d;
+  --secondary-800: #3b5e5f;
+  --secondary-900: #294041;
+  --secondary-950: #172223;
+  
+  /* Tertiary color shades */
+  --tertiary-50: #f0f7f8;
+  --tertiary-100: #d9e9ec;
+  --tertiary-200: #c2dbe0;
+  --tertiary-300: #aacdd4;
+  --tertiary-400: #93bfc8;
+  --tertiary-500: #4f929d;
+  --tertiary-600: #3d737c;
+  --tertiary-700: #2b545b;
+  --tertiary-800: #19353a;
+  --tertiary-900: #071619;
+  --tertiary-950: #050f11;
+  
+  /* Original color variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {
