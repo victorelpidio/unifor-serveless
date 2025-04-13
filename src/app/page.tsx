@@ -192,7 +192,6 @@ export default function HomePage() {
   return (
     <main className="p-6">
       <div className="flex flex-row justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Posts</h1>
         <div className="flex items-center gap-4">
           <ThemeToggle />
           <Link href="/new" className="text-blue-600 hover:underline">Novo Post</Link>
