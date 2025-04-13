@@ -2,8 +2,8 @@
 
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--tertiary-200);
+  --foreground: var(--primary-300);
   --primary: rgb(49,91,101);
   --secondary: rgb(140,183,184);
   --tertiary: rgb(79,146,157);
@@ -55,8 +55,8 @@
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: var(--primary-950);
+  --foreground: var(--primary-200);
 }
 
 body {

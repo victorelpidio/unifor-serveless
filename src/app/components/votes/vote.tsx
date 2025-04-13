@@ -1,4 +1,5 @@
 import React from 'react';
+import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 
 // Chevron components
 export const UpChevron = ({ className = "" }: { className?: string }) => (
@@ -32,18 +33,18 @@ interface VoteButtonProps {
   onClick: () => void;
 }
 
-export const VoteButton: React.FC<VoteButtonProps> = ({ type, isActive, onClick }) => {
-  const activeColor = type === 'up' ? 'text-yellow-500' : 'text-red-500';
-  const inactiveColor = 'text-gray-500 hover:text-primary-600';
-  
+export function VoteButton({ type, isActive, onClick }: VoteButtonProps) {
+  const Icon = type === 'up' ? ChevronUpIcon : ChevronDownIcon;
+  const activeColor = type === 'up' ? 'text-green-500' : 'text-red-500';
+  const inactiveColor = 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300';
+
   return (
-    <button 
-      className={`cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110 ${
-        isActive ? activeColor : inactiveColor
-      }`}
+    <button
       onClick={onClick}
+      className={`p-1 rounded-full transition-colors ${isActive ? activeColor : inactiveColor}`}
+      aria-label={`${type === 'up' ? 'Upvote' : 'Downvote'} post`}
     >
-      {type === 'up' ? <UpChevron /> : <DownChevron />}
+      <Icon className="h-6 w-6" />
     </button>
   );
-};
+}
