@@ -32,7 +32,7 @@ export default function PostCard({ post, voteState, onUpvote, onDownvote }: Post
 
         {/* Post content */}
         <div className="flex flex-col gap-2 flex-grow">
-          <Link href={`/post/${post.slug}`} className="text-xl font-semibold hover:underline text-primary-200 dark:text-primary-600">
+          <Link href={`/post/${post.slug}`} className="text-xl font-semibold hover:underline text-primary-200 dark:text-cyan-200">
             {post.title}
           </Link>
           <div className="flex flex-row gap-2 justify-between items-center">

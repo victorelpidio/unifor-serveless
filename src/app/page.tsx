@@ -194,7 +194,7 @@ export default function HomePage() {
       <div className="flex flex-row justify-between items-center mb-4">
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <Link href="/new" className="text-blue-600 hover:underline">Novo Post</Link>
+          <Link href="/newPost" className="text-blue-600 hover:underline">Novo Post</Link>
         </div>
       </div>
 
