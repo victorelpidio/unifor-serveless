@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+"use client"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "./components/ThemeToggle";
+import { useState, useEffect } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,16 +17,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Shreddit",
-  description: "A community-driven platform for sharing and discussing content",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [username, setUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const storedUsername = localStorage.getItem('username'); // Retrieve the username from localStorage
+    if (token && storedUsername) {
+      setUsername(storedUsername); // Set the username state
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove the token from localStorage
+    localStorage.removeItem('username'); // Remove the username from localStorage
+    setUsername(null); // Clear the username state
+  };
+
   return (
     <html lang="en">
       <body
@@ -50,9 +62,21 @@ export default function RootLayout({
                 </div>
               </div>
               <div className="flex justify-end pb-2">
-                <Link href="/login" className="text-gray-600 hover:text-secondary-300 font-semibold transition-colors">
-                  Cadastre-se ou clique aqui para entrar
-                </Link>
+                {username ? (
+                  <div className="flex items-center gap-4">
+                    <span className="text-gray-600">{username}</span>
+                    <button 
+                      onClick={handleLogout} 
+                      className="text-gray-600 hover:text-secondary-300 font-semibold transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <Link href="/login" className="text-gray-600 hover:text-secondary-300 font-semibold transition-colors">
+                    Cadastre-se ou clique aqui para entrar
+                  </Link>
+                )}
               </div>
             </div>
           </header>

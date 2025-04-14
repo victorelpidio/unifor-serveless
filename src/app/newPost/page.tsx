@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || "xok";
+   console.log("Using API URL:", apiUrl);
+
 export default function NewPostPage() {
   const router = useRouter();
   const [title, setTitle] = useState("");
@@ -11,28 +14,44 @@ export default function NewPostPage() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    console.log("Form submitted");
+    console.log("Title:", title);
+    console.log("Content:", content);
+    
     createPost(title, content);
     router.push("/");
   }
   
   async function createPost(title: string, content: string) {
-    console.log("criando um post")
-    // const response = await fetch("/api/posts", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ title, content }),
-    // });
+    const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/posts`; // Update the URL for the API
 
-    // if (!response.ok) {
-    //   throw new Error("Failed to create post");
-    // }
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, // Set the Authorization header with the Bearer token
+        },
+        body: JSON.stringify({ title, content }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Post created successfully:", data);
+        // Optionally, you can redirect or update the UI after successful post creation
+      } else {
+        throw new Error('Failed to create post');
+      }
+    } catch (error) {
+      console.error("Failed to create post:", error);
+      // Handle error (e.g., show a message to the user)
+    }
   }
 
   return (
     <main className="p-6 max-w-[80%] mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-cyan-200">Novo Post</h1>
+      <h1 className="text-2xl font-bold mb-4 text-cyan-700">Novo Post</h1>
       <form onSubmit={handleSubmit} className="space-y-4 p-4 rounded-2xl bg-cyan-50">
         <input
           type="text"

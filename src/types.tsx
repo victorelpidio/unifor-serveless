@@ -8,15 +8,15 @@ export interface UserResponseDTO {
 export interface CommentResponseDTO {
   text: string;
   author: UserResponseDTO;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   score: number;
 }
 
 export interface PostDetailsResponseDTO {
   title: string;
   content: string;
-  createdAt: Date;
+  createdAt: string;
   slug: string;
   author: UserResponseDTO;
   comments: CommentResponseDTO[];

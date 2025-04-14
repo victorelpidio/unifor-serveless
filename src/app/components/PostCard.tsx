@@ -42,12 +42,8 @@ export default function PostCard({ post, voteState, onUpvote, onDownvote }: Post
           {/* Post footer with author, date and comment count */}
           <div className="flex flex-row gap-4 mt-2 pt-2 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400 px-2">
             <span>Publicado por: <span className="font-medium">{post.author.username}</span></span>
-            <span>{post.createdAt.toISOString().split('T')[0]}</span>
-            <span>
-              {post.comments.length > 0 
-                ? `${post.comments.length} ${post.comments.length === 1 ? 'comentário' : 'comentários'}` 
-                : 'Sem comentários'}
-            </span>
+            <span>{post.createdAt.split('T')[0]}</span>
+
           </div>
         </div>
       </div>
